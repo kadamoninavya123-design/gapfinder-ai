@@ -24,6 +24,16 @@ export async function POST(req: Request) {
         chunks.push(...chunkPages(file.name, [{ page: 1, text }], false));
       }
     }
+        if (!chunks.length) {
+      return Response.json(
+        {
+          ok: false,
+          error:
+            "No readable text found. If this is a scanned or photographed PDF, it has no text layer. Use a text-based PDF, or save your notes as a .txt file.",
+        },
+        { status: 422 }
+      );
+    }
     return Response.json({ ok: true, chunks });
   } catch (e) {
     return Response.json(

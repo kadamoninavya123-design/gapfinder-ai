@@ -111,7 +111,7 @@ export default function Chat() {
             {m.role === "assistant" && m.sources && m.sources.length > 0 && m.content && (
               <div className="mt-3 border-t border-[#27334b] pt-2 text-sm">
                 <span className="mr-2 rounded bg-[#7aa2ff26] px-2 py-0.5 font-semibold text-[#7aa2ff]">Retrieved</span>
-                {m.sources.map((s) => (
+                                {m.sources.filter((s) => m.content.includes(`[${s.tag}]`)).map((s) => (
                   <div key={s.tag} className="text-slate-400">
                     <span className="font-semibold text-[#7aa2ff]">[{s.tag}]</span> {s.label}
                   </div>

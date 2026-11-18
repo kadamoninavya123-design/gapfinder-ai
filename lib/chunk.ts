@@ -37,8 +37,10 @@ export function chunkPages(
         heading = line.replace(/^#+\s*/, "");
         continue;
       }
-      buf += (buf ? " " : "") + line;
-      if (buf.length > 900) flush();
+        for (const s of line.split(/(?<=[.!?])\s+/)) {
+        buf += (buf ? " " : "") + s;
+        if (buf.length > 900) flush();
+      }
     }
     flush();
   }

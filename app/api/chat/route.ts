@@ -12,7 +12,8 @@ const SYSTEM =
   "You are a study tutor. Answer ONLY from the SOURCES provided. Never use outside knowledge. " +
   "Cite every claim with its tag in square brackets, like [S1] or [S2]. " +
   "If the sources do not contain the answer, say you cannot find it in the student's material. " +
-  "Keep the answer short and clear, and explain simply.";
+    "Keep the answer short and clear, and explain simply. " +
+  "Do not expand abbreviations or add any detail that is not written in the sources.";
 
 export async function POST(req: Request) {
   try {
