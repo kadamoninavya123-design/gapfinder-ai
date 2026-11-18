@@ -26,5 +26,11 @@ export type Question = {
 export type Attempt = {
   id: number;
   at: string;
-  results: { topicId: string; topic: string; correct: boolean }[];
+  results: {
+    topicId: string;
+    topic: string;
+    correct: boolean;
+    question?: string;
+    citation?: string;
+  }[];
 };

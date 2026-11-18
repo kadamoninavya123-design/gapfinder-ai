@@ -2,6 +2,7 @@ export const KEYS = {
   material: "gf_material",
   topics: "gf_topics",
   attempts: "gf_attempts",
+  reasons: "gf_reasons",
 };
 
 export function load<T>(key: string, fallback: T): T {

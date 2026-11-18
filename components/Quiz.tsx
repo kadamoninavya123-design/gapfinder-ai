@@ -80,7 +80,7 @@ export default function Quiz() {
     attempts.push({
       id: Date.now(),
       at: new Date().toISOString(),
-      results: qs.map((q, k) => ({ topicId: q.topicId, topic: q.topic, correct: answers[k] })),
+            results: qs.map((q, k) => ({ topicId: q.topicId, topic: q.topic, correct: answers[k], question: q.question, citation: q.citation })),
     });
     save(KEYS.attempts, attempts);
     setDone(true);
