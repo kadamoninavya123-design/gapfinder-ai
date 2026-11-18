@@ -24,7 +24,8 @@ export async function POST(req: Request) {
         chunks.push(...chunkPages(file.name, [{ page: 1, text }], false));
       }
     }
-        if (!chunks.length) {
+
+    if (!chunks.length) {
       return Response.json(
         {
           ok: false,

@@ -17,10 +17,14 @@ export async function POST(req: Request) {
       )
       .join("\n\n");
 
-    // GENERATION: explain the gaps using only the quiz results (no outside facts)
+    // GENERATION: summarise the quiz results only. No subject facts are allowed.
     const out = await askJson<{ reasons: { topic: string; reason: string }[] }>(
-      "You analyse quiz results. Use ONLY the quiz results provided. Do not add facts about the subject. Return JSON only, with no commentary.",
-      `${list}\n\nFor each topic write one short sentence (at most 25 words) saying what the student is missing, based on the missed questions. Name the source section when there is one. ` +
+      "You summarise quiz results. Use ONLY the quiz results provided. " +
+        "Do NOT state any fact about the subject, and do not use any term that is not in the missed question text. " +
+        "Return JSON only, with no commentary.",
+      `${list}\n\nFor each topic write one short sentence (at most 25 words) saying which question the student missed and which source section to re-read. ` +
+        `Describe the gap only in the words of the missed question. ` +
+        `Example: "You missed the question about where the cycle takes place; re-read Biology_notes.txt › Calvin cycle." ` +
         `Return: {"reasons":[{"topic":"exact topic name","reason":""}]}`
     );
     return Response.json({ ok: true, reasons: out.reasons });

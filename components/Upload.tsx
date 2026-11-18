@@ -116,6 +116,7 @@ export default function Upload() {
     }
   }
 
+  const names = (k: Kind) => Array.from(new Set(store[k].map((c) => c.source)));
   const total = store.syllabus.length + store.notes.length + store.papers.length;
 
   return (
@@ -138,6 +139,10 @@ export default function Upload() {
         )}
       </div>
 
+      <p className="text-sm text-slate-400">
+        Uploads are added to what is already loaded. Press Clear material before uploading your own files, so the sample and your files do not mix.
+      </p>
+
       {error && <p className="text-sm text-red-400">{error}</p>}
 
       <div className="grid gap-3 md:grid-cols-3">
@@ -159,15 +164,22 @@ export default function Upload() {
             <div className="mt-3 text-sm text-slate-400">
               {busy === s.kind ? "Reading..." : `${store[s.kind].length} sections indexed`}
             </div>
+            {names(s.kind).map((n) => (
+              <div key={n} className="truncate text-xs text-[#7aa2ff]">
+                {n}
+              </div>
+            ))}
           </div>
         ))}
       </div>
 
       {store.notes.length > 0 && (
         <div className="rounded-xl border border-[#27334b] bg-[#151d2e] p-4">
-          <div className="mb-2 font-semibold">Sections found in your notes</div>
-          <ul className="space-y-2 text-sm">
-            {store.notes.slice(0, 6).map((c) => (
+          <div className="mb-2 font-semibold">
+            Sections found in your notes ({store.notes.length})
+          </div>
+          <ul className="max-h-80 space-y-2 overflow-y-auto text-sm">
+            {store.notes.map((c) => (
               <li key={c.id}>
                 <span className="font-semibold text-[#7aa2ff]">{c.label}</span>
                 <div className="text-slate-400">{c.text.slice(0, 110)}...</div>
