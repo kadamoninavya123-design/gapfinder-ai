@@ -17,7 +17,7 @@ export function chunkPages(
     const flush = () => {
       const body = buf.trim();
       buf = "";
-      if (body.length < 40) return;
+      if (body.length < 20) return;
       n++;
       const where = hasPages ? `, p.${page}` : "";
       const label = heading
