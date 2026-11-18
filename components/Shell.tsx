@@ -6,6 +6,7 @@ import Quiz from "./Quiz";
 import GapReport from "./GapReport";
 import Plan from "./Plan";
 import Progress from "./Progress";
+import Chat from "./Chat";
 
 const TABS = [
   { id: "material", label: "Material" },
@@ -14,6 +15,7 @@ const TABS = [
   { id: "gaps", label: "Gap report" },
   { id: "plan", label: "Revision plan" },
   { id: "progress", label: "Progress" },
+  { id: "chat", label: "Explain" },
 ];
 
 export default function Shell() {
@@ -39,6 +41,7 @@ export default function Shell() {
       {tab === "gaps" && <GapReport />}
       {tab === "plan" && <Plan />}
       {tab === "progress" && <Progress />}
+      {tab === "chat" && <Chat />}
     </>
   );
 }
